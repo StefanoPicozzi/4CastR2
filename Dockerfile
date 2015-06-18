@@ -78,6 +78,7 @@ RUN yum -y install git
 RUN git clone https://github.com/StefanoPicozzi/4CastR2
 RUN cp 4CastR2/* /home/guest/
 COPY 4CastR.png /home/guest/
+COPY paasonomics.R /home/guest/
 
 RUN chown -R guest:guest /home/guest/*
 
