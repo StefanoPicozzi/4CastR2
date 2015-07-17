@@ -1,0 +1,17 @@
+{
+    "contents" : "getwd()#!/usr/bin/Rscript\n\n# Author: Stefano Picozzi\n# Date: January 2015\n# Name: 4CastR.R\n\n# Batch control script\nSys.setenv(NOAWT = \"true\")\n\nsource(\"4CastR2.R\")\nppi <- 800\n\n# The top 20 ASX stocks\nzLabel <- c(\"AMP\", \"ANZ\", \"BHP\", \"BXB\", \"CBA\", \"CSL\", \"IAG\", \"MQG\", \"NAB\", \"ORG\",\t\n            \"QBE\", \"RIO\", \"SCG\", \"SUN\", \"TLS\", \"WBC\",\t\"WES\", \"WFD\", \"WOW\", \"WPL\")\t\nd <- c(\"NORTH\", \"SOUTH\", \"SOUTH\", \"NORTH\", \"NORTH\", \"SOUTH\", \"SOUTH\", \"NORTH\", \"SOUTH\", \"NORTH\", \n       \"NORTH\", \"SOUTH\", \"NORTH\", \"NORTH\", \"SOUTH\", \"NORTH\", \"NORTH\", \"SOUTH\", \"NORTH\", \"SOUTH\")\n\n# Generate some random sample data\nx <- sample(1:9, 20, replace=TRUE)\ny <- sample(1:9, 20, replace=TRUE)\nz <- sample(0:500000, 20, replace=T)\ndata <- data.frame(y=y, x=x, z=z, zLabel=zLabel, d=d)\n\nxAxisTitle <- \"Business Case\"\nyAxisTitle <- \"Competitive Positioning\"\nchartTitle <- \"My Sales 4Cast\"\nxIntercept <- 5\nyIntercept <- 5\nxMin <- 1\nyMin <- 1\nyGap <- 1\nxMax <- 9\nyMax <- 9\nxGap <- 1\nsize <- 80\nconfig <- data.frame(xAxisTitle, yAxisTitle, chartTitle, \n                     xIntercept, yIntercept, xMin, yMin, xMax, yMax, size, stringsAsFactors=FALSE)\n\npng(\"4CastR2-Example.png\",\n    res = 300,\n    width = 4*ppi,\n    height = 4*ppi,\n    pointsize = 8,\n    units = \"px\")\n\nget4Cast(config, data)\n\ndev.off()\n\n",
+    "created" : 1436956316411.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1131180753",
+    "id" : "AD16617E",
+    "lastKnownWriteTime" : 1434324814,
+    "path" : "~/4CastR2-Example.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "x <- \"Hello World\"\n",
+    "created" : 1436931657576.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3107749225",
+    "id" : "B89D0756",
+    "lastKnownWriteTime" : 1436931679,
+    "path" : "~/test.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

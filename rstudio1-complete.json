@@ -1,0 +1,97 @@
+{
+  "metadata":{
+    "name":"rstudio1-meta"
+  },
+  "kind":"Config",
+  "apiVersion":"v1beta1",
+  "creationTimestamp":"2014-09-18T18:28:38-04:00",
+  "items":[
+    {
+      "id": "rstudio1-service",
+      "kind": "Service",
+      "apiVersion": "v1beta1",
+      "port": 3030,
+      "containerPort": 8787,
+      "selector": {
+        "name": "rstudio1"
+      }
+    },
+    {
+      "kind": "Route",
+      "apiVersion": "v1beta1",
+      "metadata": {
+        "name": "rstudio1-route"
+      },
+      "id": "rstudio1-route",
+      "host": "rstudio1.cloudapps-9eca.oslab.opentlc.com",
+      "serviceName": "rstudio1-service"
+    },
+    {
+        "kind": "DeploymentConfig",
+        "apiVersion": "v1beta1",
+        "metadata": {
+            "name": "rstudio1"
+        },
+        "triggers": [
+            {
+              "imageChangeParams": {
+                "automatic": true,
+                "containerNames": [
+                  "rstudio1"
+                ],
+                "from": {
+                  "name": "rstudio1"
+                },
+                "tag": "latest"
+              },
+              "type": "ImageChange"
+            }
+        ],
+        "template": {
+            "strategy": {
+                "type": "Recreate"
+            },
+            "controllerTemplate": {
+                "replicas": 1,
+                "replicaSelector": {
+                    "name": "rstudio1"
+                },
+                "podTemplate": {
+                    "desiredState": {
+                        "manifest": {
+                            "version": "v1beta2",
+                            "id": "rstudio1",
+                            "volumes": null,
+                            "containers": [
+                                {
+                                    "name": "rstudio1",
+                                    "image": "spicozzi/rstudio",
+                                    "ports": [
+                                        {
+                                                 "containerPort": 8787,
+                                                   "protocol": "TCP"
+                                                              }
+                                    ],
+                                    "resources": {},
+                                    "terminationMessagePath": "/dev/termination-log",
+                                    "imagePullPolicy": "PullIfNotPresent",
+                                    "capabilities": {}
+                                }
+                            ],
+                            "restartPolicy": {
+                                "always": {}
+                            },
+                            "dnsPolicy": "ClusterFirst"
+                        }
+                    },
+
+                    "labels": {
+                        "name": "rstudio1"
+                    }
+                }
+            }
+        },
+        "latestVersion": 1
+    }
+  ]
+}
