@@ -1,0 +1,88 @@
+{
+  "kind": "List",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "rstudio-complete-example"
+  },
+  "items": [
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "rstudio-service"
+      },
+      "spec": {
+        "selector": {
+          "name": "rstudio"
+        },
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 27017,
+            "targetPort": 8787
+          }
+        ]
+      }
+    },
+    {
+      "kind": "Route",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "rstudio-route"
+      },
+      "spec": {
+        "host": "rstudio.cloudapps-GUID.oslab.opentlc.com",
+        "to": {
+          "name": "rstudio-service"
+        }
+      }
+    },
+{
+  "kind": "Pod",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "rstudio",
+    "creationTimestamp": null,
+    "labels": {
+      "name": "rstudio"
+    }
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "rstudio",
+        "image": "spicozzi/rstudio",
+        "ports": [
+          {
+            "containerPort": 8787,
+            "protocol": "TCP"
+          }
+        ],
+        "resources": {
+          "limits": {
+            "cpu": "10m",
+            "memory": "500Mi"
+          }
+        },
+        "terminationMessagePath": "/dev/termination-log",
+        "imagePullPolicy": "IfNotPresent",
+        "capabilities": {},
+        "securityContext": {
+          "capabilities": {},
+          "privileged": true
+        },
+        "nodeSelector": {
+          "region": "primary"
+        }
+      }
+    ],
+    "restartPolicy": "Always",
+    "dnsPolicy": "ClusterFirst",
+    "serviceAccount": ""
+  },
+  "status": {}
+}
+
+
+  ]
+}
