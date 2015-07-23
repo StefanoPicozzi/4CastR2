@@ -4,6 +4,8 @@ MAINTAINER Stefano Picozzi
 
 USER root
 
+#RUN yum makecache fast
+
 RUN yum -y install epel-release
 RUN yum -y install R
 RUN yum -y install mysql
@@ -17,6 +19,7 @@ RUN yum -y install curl
 RUN yum -y install libcurl libcurl-devel
 RUN yum -y install libpng-devel
 RUN yum -y install mesa-libGL-devel mesa-libGLU-devel libpng-devel
+RUN yum -y install libxml2 libxml2-devel
 
 RUN mkdir packages
 
@@ -68,6 +71,31 @@ RUN cd packages; wget http://cran.rstudio.com/src/contrib/rgl_0.95.1247.tar.gz
 RUN cd packages; R CMD INSTALL rgl_0.95.1247.tar.gz
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/xlsx_0.5.7.tar.gz
 RUN cd packages; R CMD INSTALL xlsx_0.5.7.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/jsonlite_0.9.16.tar.gz
+RUN cd packages; R CMD INSTALL jsonlite_0.9.16.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/mime_0.3.tar.gz
+RUN cd packages; R CMD INSTALL mime_0.3.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/curl_0.9.1.tar.gz
+RUN cd packages; R CMD INSTALL curl_0.9.1.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/R6_2.1.0.tar.gz
+RUN cd packages; R CMD INSTALL R6_2.1.0.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/httr_1.0.0.tar.gz
+RUN cd packages; R CMD INSTALL httr_1.0.0.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/bitops_1.0-6.tar.gz
+RUN cd packages; R CMD INSTALL bitops_1.0-6.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/RCurl_1.95-4.7.tar.gz
+RUN cd packages; R CMD INSTALL RCurl_1.95-4.7.tar.gz
+
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/XML_3.98-1.3.tar.gz
+RUN cd packages; R CMD INSTALL XML_3.98-1.3.tar.gz
+
 
 USER root
 RUN useradd guest
