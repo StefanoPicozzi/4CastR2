@@ -23,8 +23,8 @@ RUN yum -y install libxml2 libxml2-devel
 
 RUN mkdir packages
 
-RUN cd packages; wget http://cran.rstudio.com/src/contrib/rJava_0.9-6.tar.gz
-RUN cd packages; R CMD INSTALL rJava_0.9-6.tar.gz
+RUN cd packages; wget https://cran.r-project.org/src/contrib/rJava_0.9-7.tar.gz
+RUN cd packages; R CMD INSTALL rJava_0.9-7.tar.gz
 # RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6jars_0.0.1.tar.gz
 # RUN cd packages; R CMD INSTALL Rdrools6jars_0.0.1.tar.gz
 # RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6_0.0.1.tar.gz
