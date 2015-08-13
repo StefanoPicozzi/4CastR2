@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1437798411685.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2FC786DC",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "ryp47fojqe",
+        "caption" : "inputDF",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=inputDF&cache_key=ryp47fojqe",
+        "displayedObservations" : 14,
+        "environment" : "",
+        "object" : "inputDF",
+        "totalObservations" : 14,
+        "variables" : 3
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

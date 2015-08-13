@@ -1,0 +1,17 @@
+{
+    "contents" : "Sys.setenv(NOAWT = \"true\")\nlibrary(\"httr\")\nlibrary(\"rjson\")\nlibrary(\"RCurl\")\nlibrary(\"Rdrools6\")\nls(\"package:Rdrools6\", all = TRUE)\nlsf.str(\"package:Rdrools6\", all = TRUE)\n\nsetwd(\"/home/guest/Examples/Drools\")\nsource(\"../Withings/getWithingsWeight.R\")\nsetwd(\"/home/guest/Examples/Drools\")\n\ninputDF <- weightDF\ninput.columns <- colnames(inputDF)\n\n# Set up some sample output data\noutput.columns <-c (\"id\", \"rulename\", \"ruledate\", \"rulemsg\", \"ruledata\")\n\n# set up rules file\nrules <- readLines(\"weight.drl\")\nmode <- \"STREAM\"\n\n# Apply rules\nrules.session <- rulesSession(mode, rules, input.columns, output.columns)\noutputDF <- runRules(rules.session, inputDF)\n\n\n\n\n\n\n",
+    "created" : 1437798062003.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2036818069",
+    "id" : "BCC54647",
+    "lastKnownWriteTime" : 1437798119,
+    "path" : "~/Examples/Drools/drools.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

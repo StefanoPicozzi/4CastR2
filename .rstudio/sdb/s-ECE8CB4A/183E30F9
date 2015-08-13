@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1437798276278.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "183E30F9",
+    "lastKnownWriteTime" : 43009448,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "y87v394eio",
+        "caption" : "weightDF",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=weightDF&cache_key=y87v394eio",
+        "displayedObservations" : 14,
+        "environment" : "",
+        "object" : "weightDF",
+        "totalObservations" : 14,
+        "variables" : 3
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

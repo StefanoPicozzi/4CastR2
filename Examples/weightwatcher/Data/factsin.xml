@@ -1,0 +1,19 @@
+<batch-execution lookup="watchsession" >
+  <insert-elements return-object="false">
+    
+    <com.redhat.weightwatcher.Fact>
+      <factid>1</factid>
+      <facttype>1</facttype>
+      <facttxt>Incoming</facttxt>
+    </com.redhat.weightwatcher.Fact>
+
+    <com.redhat.weightwatcher.Fact>
+      <factid>2</factid>
+      <facttype>1</facttype>
+      <facttxt>Incoming</facttxt>
+    </com.redhat.weightwatcher.Fact>
+
+  </insert-elements>
+  <fire-all-rules/>
+  <query out-identifier="Factin" name="getFactin"/>
+</batch-execution>

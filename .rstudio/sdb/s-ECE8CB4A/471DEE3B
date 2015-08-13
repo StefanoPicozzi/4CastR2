@@ -1,0 +1,17 @@
+{
+    "contents" : "Sys.setenv(NOAWT = \"true\")\nlibrary('httr')\nlibrary('rjson')\nlibrary('RCurl')\n\nsetwd(\"/home/guest/Examples/Withings\")\n\nfitbitkey <- \"a7dd1c18a2a64dbcbd11e10482c8d5ef\"                          \nfitbitsecret <- \"ff877fa1f54741ae93a549bdb2d7e900\"\nfitbitappname <- \"TheNudgeMachine\" \n\ntoken_url <- \"https://api.fitbit.com/oauth/request_token\"\naccess_url <- \"https://api.fitbit.com/oauth/access_token\"\nauth_url <- \"https://www.fitbit.com/oauth/authorize\"\n\nfbr <- oauth_app(fitbitappname, fitbitkey, fitbitsecret)\nfitbit <- oauth_endpoint(token_url, auth_url, access_url)\n#token = oauth1.0_token(fitbit, fbr)\n#saveRDS(token, file = paste(\"user/\", username, \"/fitbit-token.RDS\", sep = \"\"))\ntoken <- readRDS(\"fitbit-token.RDS\")\nsig <- sign_oauth1.0(app=fbr, token=token$oauth_token, token_secret=token$oauth_token_secret)\n\nstartdate <- Sys.Date()-30\nenddate <- paste(Sys.Date()+1, \".json\", sep=\"\")   \n\ngetURL <- \"https://api.fitbit.com/1/user/-/body/log/weight/date/\"\ngetURL <- paste(getURL, startdate, \"/\", enddate, sep = \"\")\nprint(getURL)\n   \nweightJSON <- tryCatch({\n   GET(getURL, sig)\n}, warning = function(w) {\n   print(\"Warning weight\")\n   stop()\n}, error = function(e) {\n   print(geterrmessage())\n   print(\"Error GET fitbit weight\")\n   stop()\n}, finally = {\n})\n\nif ( length(content(weightJSON)$`weight`) == 0 ) { stop(\"No fitbit weight records\") }\n\nweightDF <- NULL\n\nfor (i in 1:length(content(weightJSON)$`weight`)) {\n   row <- c( \"stefano\", paste(content(weightJSON)$`weight`[i][[1]][['date']], \" 07:15:00\", sep=\"\"), content(weightJSON)$`weight`[i][[1]][['weight']] )\n   weightDF <- rbind(weightDF, c(row))\n}\n\ncolnames(weightDF) = c(\"username\", \"obsdate\", \"obsvalue\")\n",
+    "created" : 1437798136631.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2688522058",
+    "id" : "471DEE3B",
+    "lastKnownWriteTime" : 1437798147,
+    "path" : "~/Examples/Withings/getWithingsWeight.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,4 +1,4 @@
-# Use fedora as the base
+# Use centos as the base
 FROM centos:latest
 MAINTAINER Stefano Picozzi
 
@@ -20,15 +20,17 @@ RUN yum -y install libcurl libcurl-devel
 RUN yum -y install libpng-devel
 RUN yum -y install mesa-libGL-devel mesa-libGLU-devel libpng-devel
 RUN yum -y install libxml2 libxml2-devel
+RUN yum -y install git
 
 RUN mkdir packages
 
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/rJava_0.9-6.tar.gz
 RUN cd packages; R CMD INSTALL rJava_0.9-6.tar.gz
-# RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6jars_0.0.1.tar.gz
-# RUN cd packages; R CMD INSTALL Rdrools6jars_0.0.1.tar.gz
-# RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6_0.0.1.tar.gz
-# RUN cd packages; R CMD INSTALL Rdrools6_0.0.1.tar.gz
+
+RUN cd packages; git clone https://github.com/StefanoPicozzi/Rdrools6
+RUN cd packages; R CMD INSTALL Rdrools6/Rdrools6jars_0.0.1.tar.gz
+RUN cd packages; R CMD INSTALL Rdrools6/Rdrools6_0.0.1.tar.gz
+
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/stringi_0.5-5.tar.gz
 RUN cd packages; R CMD INSTALL stringi_0.5-5.tar.gz
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/magrittr_1.5.tar.gz
@@ -96,10 +98,15 @@ RUN cd packages; R CMD INSTALL RCurl_1.95-4.7.tar.gz
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/XML_3.98-1.3.tar.gz
 RUN cd packages; R CMD INSTALL XML_3.98-1.3.tar.gz
 
+RUN cd packages; wget http://cran.rstudio.com/src/contrib/base64enc_0.1-2.tar.gz
+RUN cd packages; R CMD INSTALL base64enc_0.1-2.tar.gz
 
 USER root
 RUN useradd guest
 RUN echo guest:guest | chpasswd
+
+COPY Samples /home/guest
+RUN chown -R guest:guest /home/guest
 
 RUN useradd student01; useradd student02; useradd student03; useradd student04; useradd student05; useradd student06; useradd student07; useradd student08; useradd student09 ;useradd student10;
 
