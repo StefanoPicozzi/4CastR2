@@ -24,6 +24,7 @@ RUN yum -y install git
 
 RUN mkdir packages
 
+<<<<<<< HEAD
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/rJava_0.9-6.tar.gz
 RUN cd packages; R CMD INSTALL rJava_0.9-6.tar.gz
 
@@ -31,6 +32,14 @@ RUN cd packages; git clone https://github.com/StefanoPicozzi/Rdrools6
 RUN cd packages; R CMD INSTALL Rdrools6/Rdrools6jars_0.0.1.tar.gz
 RUN cd packages; R CMD INSTALL Rdrools6/Rdrools6_0.0.1.tar.gz
 
+=======
+RUN cd packages; wget https://cran.r-project.org/src/contrib/rJava_0.9-7.tar.gz
+RUN cd packages; R CMD INSTALL rJava_0.9-7.tar.gz
+# RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6jars_0.0.1.tar.gz
+# RUN cd packages; R CMD INSTALL Rdrools6jars_0.0.1.tar.gz
+# RUN cd packages; wget https://github.com/StefanoPicozzi/Rdrools6/blob/master/Rdrools6_0.0.1.tar.gz
+# RUN cd packages; R CMD INSTALL Rdrools6_0.0.1.tar.gz
+>>>>>>> 54cde72724a4db2522e56f94e7d5889f5949aeb4
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/stringi_0.5-5.tar.gz
 RUN cd packages; R CMD INSTALL stringi_0.5-5.tar.gz
 RUN cd packages; wget http://cran.rstudio.com/src/contrib/magrittr_1.5.tar.gz
